@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:utool="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_start"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#139CEA"
+    android:orientation="vertical"
+    tools:context="com.example.mytool.activity.StartActivity">
+
+    <TextView
+        android:id="@+id/title_text"
+        style="@style/TitleTextView" />
+
+    <com.example.mytool.custom.spinner.NiceSpinner
+        android:id="@+id/nice_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/black"
+        utool:textTint="@android:color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="选择你预测时间"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/today_but"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_but_bg"
+            android:text="今天"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/tomorrow_but"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_but_bg"
+            android:text="明天" />
+
+        <Button
+            android:id="@+id/week_but"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_but_bg"
+            android:text="本周" />
+
+        <Button
+            android:id="@+id/next_week_but"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_but_bg"
+            android:text="下周" />
+
+        <Button
+            android:id="@+id/month_but"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_but_bg"
+            android:text="本月" />
+
+        <Button
+            android:id="@+id/year_but"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_but_bg"
+            android:text="今年" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/start_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_datetime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_health"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_love"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_QFriend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+
+            <TextView
+                android:id="@+id/start_work"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/start_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="9dp"
+                android:padding="6dp"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

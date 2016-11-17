@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_idom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#139CEA"
+    android:orientation="vertical"
+    tools:context="com.example.mytool.activity.IdiomActivity">
+
+    <TextView
+        android:id="@+id/title_text"
+        style="@style/TitleTextView"
+         />
+
+
+    <include layout="@layout/item_query"></include>
+
+    <TextView
+        android:id="@+id/idiom_error_text"
+        style="@style/ErrorTextView" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/idiom_ll"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idiom_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/bushou_text"
+                style="@style/TextViewItem"
+                android:text="部首：" />
+
+            <TextView
+                android:id="@+id/head_text"
+                style="@style/TextViewItem"
+                android:text="头：" />
+
+            <TextView
+                android:id="@+id/pingyin_text"
+                style="@style/TextViewItem"
+                android:text="拼音：" />
+
+            <TextView
+                android:id="@+id/chengyujs_text"
+                style="@style/TextViewItem"
+                android:text="成语解释：" />
+
+            <TextView
+                android:id="@+id/from_text"
+                style="@style/TextViewItem"
+                android:text="摘自：" />
+
+            <TextView
+                android:id="@+id/example_text"
+                style="@style/TextViewItem"
+                android:text="例子：" />
+
+            <TextView
+                android:id="@+id/yufa_text"
+                style="@style/TextViewItem"
+                android:text="语法：" />
+
+            <TextView
+                android:id="@+id/ciyujs_text"
+                style="@style/TextViewItem"
+                android:text="词语解释：" />
+
+            <TextView
+                android:id="@+id/yinzhengjs_text"
+                style="@style/TextViewItem"
+                android:text="应用解释：" />
+
+            <TextView
+                android:id="@+id/citongyi_text"
+                style="@style/TextViewItem"
+                android:layout_marginBottom="20dp"
+                android:text="同义：" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

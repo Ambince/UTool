@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_qluck"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#139CEA"
+    android:orientation="vertical"
+    tools:context="com.example.mytool.activity.QLuckActivity">
+
+
+    <TextView
+        android:id="@+id/title_text"
+        style="@style/TitleTextView" />
+
+    <include layout="@layout/item_query"></include>
+
+    <TextView
+        android:id="@+id/qq_error_text"
+        style="@style/ErrorTextView" />
+
+    <TextView
+        android:id="@+id/conclusion_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="3dp"
+        android:paddingLeft="5dp"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/analysis_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:lineSpacingExtra="5dp"
+        android:padding="5dp"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+
+</LinearLayout>

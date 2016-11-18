@@ -73,7 +73,7 @@ public class FlashActivity extends BaseActivity {
         } else {//无网络
             timer = new Timer();
             mJson = Util.getWeatherInfo(this);
-            timer.schedule(task, 0);
+            timer.schedule(task, 5000);
         }
 
 
@@ -98,7 +98,7 @@ public class FlashActivity extends BaseActivity {
                     //存入sp
                     Util.saveWeatherInfo(FlashActivity.this, mJson);
                 }
-                timer.schedule(task, 0);
+                timer.schedule(task, 5000);
 
             }
         }, new Response.ErrorListener() {

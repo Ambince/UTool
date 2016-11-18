@@ -10,14 +10,28 @@ import android.os.Parcelable;
 public class WeatherResult implements Parcelable {
     private WeatherData data;
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.data, flags);
+    }
+
+    public WeatherResult() {
+    }
+
     protected WeatherResult(Parcel in) {
-        data = in.readParcelable(WeatherData.class.getClassLoader());
+        this.data = in.readParcelable(WeatherData.class.getClassLoader());
     }
 
     public static final Creator<WeatherResult> CREATOR = new Creator<WeatherResult>() {
         @Override
-        public WeatherResult createFromParcel(Parcel in) {
-            return new WeatherResult(in);
+        public WeatherResult createFromParcel(Parcel source) {
+            return new WeatherResult(source);
         }
 
         @Override
@@ -26,14 +40,12 @@ public class WeatherResult implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public WeatherData getData() {
+        return data;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeParcelable(data, i);
+    public void setData(WeatherData data) {
+        this.data = data;
     }
 
     @Override
@@ -41,13 +53,5 @@ public class WeatherResult implements Parcelable {
         return "WeatherResult{" +
                 "data=" + data +
                 '}';
-    }
-
-    public WeatherData getData() {
-        return data;
-    }
-
-    public void setData(WeatherData data) {
-        this.data = data;
     }
 }

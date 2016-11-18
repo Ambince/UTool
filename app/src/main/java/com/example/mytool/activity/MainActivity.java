@@ -15,6 +15,9 @@ import com.example.mytool.R;
 import com.example.mytool.adapter.HomeAdapter;
 import com.example.mytool.bean.weather.LifeWeatherInfo;
 import com.example.mytool.bean.weather.Weather;
+import com.example.mytool.bean.weather.WeatherArray;
+import com.example.mytool.bean.weather.WeatherArrayResult;
+import com.example.mytool.bean.weather.WeatherCommentData;
 import com.example.mytool.bean.weather.WeatherData;
 import com.example.mytool.bean.weather.WeatherDayInfo;
 import com.example.mytool.bean.weather.WeatherDetail;
@@ -48,10 +51,13 @@ public class MainActivity extends BaseActivity {
     private String mTemperature;
     private String mCityName;
     private Weather mWeather;
+    private WeatherArray weatherArray;
     private String mWeatherInfoCould;
     private String mWind;
     private String power;
     private String mJson;
+    private static final int NORMAL = 1;
+    private static final int OTHER = 2;
 
     private int[] mPhoto;
     private HomeAdapter mHomeAdapter;
@@ -65,8 +71,17 @@ public class MainActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Weather mWeather = (Weather) msg.obj;
-            setWeatherData(mWeather);
+            switch (msg.arg1) {
+                case NORMAL:
+                    Weather mWeather = (Weather) msg.obj;
+                    setWeatherData(mWeather);
+                    break;
+                case OTHER:
+                    WeatherArray weatherArray = (WeatherArray) msg.obj;
+                    setWeatherArrayData(weatherArray);
+                    break;
+            }
+
 
         }
     };
@@ -111,10 +126,20 @@ public class MainActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mWeather = gson.fromJson(jsonString, Weather.class);
-                Message message = Message.obtain();
-                message.obj = mWeather;
-                mHandler.sendMessage(message);
+                try {
+                    mWeather = gson.fromJson(jsonString, Weather.class);
+                    Message message = Message.obtain();
+                    message.obj = mWeather;
+                    message.arg1 = NORMAL;
+                    mHandler.sendMessage(message);
+                } catch (Exception e) {
+                    weatherArray = gson.fromJson(jsonString, WeatherArray.class);
+                    Message message = Message.obtain();
+                    message.obj = weatherArray;
+                    message.arg1 = OTHER;
+                    mHandler.sendMessage(message);
+                }
+
             }
         }).start();
 
@@ -129,6 +154,40 @@ public class MainActivity extends BaseActivity {
     private void setWeatherData(Weather weather) {
         //获取WeatherData
         WeatherData weatherData = weather.getResult().getData();
+        //获取白天 夜间温度
+        List<WeatherList> weather1 = weatherData.getWeather();
+        WeatherDayInfo weatherDayInfo = weather1.get(0).getInfo();
+        String[] day = weatherDayInfo.getDay();
+        String[] night = weatherDayInfo.getNight();
+        String temperatureDay = day[2];
+        String temperatureNight = night[0];
+        //获取 WeatherRealtime
+        WeatherRealtime weatherRealtime = weatherData.getRealtime();
+        //获取weather
+        WeatherDetail weatherDetail = weatherRealtime.getWeather();
+        //获取风力
+        WeatherWind wind = weatherRealtime.getWind();
+        mTemperature = weatherDetail.getTemperature();
+        mWeatherInfoCould = weatherDetail.getInfo();
+        mWind = wind.getDirect();
+        power = wind.getPower();
+        mTextViewCity.setText(mCityName);
+        mTextViewTemperature.setText(mTemperature);
+        mTextViewWind.setText(mWind + power + " ");
+        mTextViewCloud.setText(mWeatherInfoCould);
+        mTextViewDu.setText("°");
+        mTextViewDuration.setText(temperatureNight + " / " + temperatureDay);
+
+    }
+
+    /**
+     * 获取具体数据
+     *
+     * @param weather
+     */
+    private void setWeatherArrayData(WeatherArray weather) {
+        //获取WeatherData
+        WeatherCommentData weatherData = weather.getResult().getData();
         //获取白天 夜间温度
         List<WeatherList> weather1 = weatherData.getWeather();
         WeatherDayInfo weatherDayInfo = weather1.get(0).getInfo();

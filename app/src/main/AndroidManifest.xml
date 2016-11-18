@@ -33,7 +33,8 @@
         <activity android:name=".activity.ZhouGongActivity" />
         <activity android:name=".activity.StartActivity" />
         <activity android:name=".activity.HistoryActivity" />
-        <activity android:name=".activity.HistoryDetailActivity"></activity>
+        <activity android:name=".activity.HistoryDetailActivity" />
+        <activity android:name=".activity.H5MovieActivity"></activity>
     </application>
 
 </manifest>

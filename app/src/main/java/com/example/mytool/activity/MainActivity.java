@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -101,9 +102,9 @@ public class MainActivity extends BaseActivity {
      */
     public void initData() {
         mItemData = new String[]{"QQ号测吉凶", "手机号查询", "IP查询", "身份证查询", "周公解梦", "星座运势",
-                "成语查询", "历史上的今天", "H5在线电影票", "汇率"};
+                "成语查询", "历史上的今天", "在线电影票"};
         mPhoto = new int[]{R.drawable.qq, R.drawable.phone, R.drawable.ip, R.drawable.idcard, R.drawable.zhougong,
-                R.drawable.start, R.drawable.idiom, R.drawable.history, R.drawable.movie_h5, R.drawable.huilv};
+                R.drawable.start, R.drawable.idiom, R.drawable.history, R.drawable.movie_h5};
         Bundle extras = getIntent().getExtras();
         isShowWeather = extras.getBoolean("isShowWeather");
         mCityName = extras.getString("city");
@@ -176,7 +177,8 @@ public class MainActivity extends BaseActivity {
         mTextViewWind.setText(mWind + power + " ");
         mTextViewCloud.setText(mWeatherInfoCould);
         mTextViewDu.setText("°");
-        mTextViewDuration.setText(temperatureNight + " / " + temperatureDay);
+        mTextViewDuration.setText(temperatureNight + "°/" + temperatureDay + "°");
+
 
     }
 
@@ -194,7 +196,7 @@ public class MainActivity extends BaseActivity {
         String[] day = weatherDayInfo.getDay();
         String[] night = weatherDayInfo.getNight();
         String temperatureDay = day[2];
-        String temperatureNight = night[0];
+        String temperatureNight = night[2];
         //获取 WeatherRealtime
         WeatherRealtime weatherRealtime = weatherData.getRealtime();
         //获取weather
@@ -213,8 +215,7 @@ public class MainActivity extends BaseActivity {
         mTextViewWind.setText(mWind + power + " ");
         mTextViewCloud.setText(mWeatherInfoCould);
         mTextViewDu.setText("°");
-
-        mTextViewDuration.setText(temperatureNight + " / " + temperatureDay);
+        mTextViewDuration.setText(temperatureNight + "°/" + temperatureDay + "°");
 
     }
 
@@ -264,7 +265,7 @@ public class MainActivity extends BaseActivity {
                     startMyActivity(HistoryActivity.class, position);
 
                 } else if (mItemData[position].equals(mItemData[8])) {
-                    Intent intent = new Intent(MainActivity.this, IdCardActivity.class);
+                    Intent intent = new Intent(MainActivity.this, H5MovieActivity.class);
                     startActivity(intent);
 
                 }

@@ -27,4 +27,7 @@ public class API {
     //天气
     public static String WEATHERURL  = "http://op.juhe.cn/onebox/weather/query?key=6cbc1c7ae19f3b14456eafcfa3664187&cityname=";
     public static String HISTORYDETAIL  = "http://v.juhe.cn/todayOnhistory/queryDetail.php?key=239e12dedcab7fecff7f7020f9f74cdb&e_id=";
+    public static String H5MOVIE  = "http://v.juhe.cn/wepiao/go?key=e59360f46fb3c2a41309104e8aba07b3";
+
+
 }

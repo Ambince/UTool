@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mytool.R;
@@ -50,11 +51,18 @@ public class HistoryDetailActivity extends BaseActivity {
         CommentVolley.isCache = true;
         CommentVolley.cacheKey = HISTORY_DETAIL_KEY;
         Log.v("Amence", CommentVolley.cacheKey);
-        if (Util.getString(this, HISTORY_DETAIL_KEY) != null) {
-            onHandlerUI(Util.parseGson(Util.getString(this, HISTORY_DETAIL_KEY), historyDetail).getResult().get(0));
+        if (!Util.isNetWorkAvailable(this)) {
+            HistoryDetail data = Util.parseGson(Util.getString(this, HISTORY_DETAIL_KEY), historyDetail);
+            if (data.getResult() != null) {
+                onHandlerUI(data.getResult().get(0));
 
+            } else {
+                Toast.makeText(HistoryDetailActivity.this, "网上没有数据，看不了了！", Toast.LENGTH_SHORT).show();
+
+            }
         } else {
             url = API.HISTORYDETAIL + urlKey;
+            Log.v("Amence", url);
             CommentVolley<HistoryDetail> commentVolley = new CommentVolley<HistoryDetail>();
             commentVolley.getDateByVolley(url, this, historyDetail, new CommentVolley.VolleyCallBack<HistoryDetail>() {
                 @Override
@@ -62,6 +70,8 @@ public class HistoryDetailActivity extends BaseActivity {
 
                     if (historyDetail.getResult() != null) {
                         onHandlerUI(historyDetail.getResult().get(0));
+                    } else {
+                        Toast.makeText(HistoryDetailActivity.this, "网上没有数据，看不了了！", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -78,18 +88,21 @@ public class HistoryDetailActivity extends BaseActivity {
     }
 
     private void onHandlerUI(HistoryDetailResult historyDetailResult) {
-        mTextViewTitle.setText(historyDetailResult.getTitle());
-        picUrl = historyDetailResult.getPicUrl();
-        mTextViewContent.setText(historyDetailResult.getContent());
-        if (picUrl.size() > 0) {
-            mImageView.setVisibility(View.VISIBLE);
-            Glide.with(mContext)
-                    .load(picUrl.get(0).getUrl())
-                    .into(mImageView);
-
+        if (historyDetailResult != null) {
+            mTextViewTitle.setText(historyDetailResult.getTitle());
+            picUrl = historyDetailResult.getPicUrl();
+            mTextViewContent.setText(historyDetailResult.getContent());
+            if (picUrl.size() > 0) {
+                mImageView.setVisibility(View.VISIBLE);
+                Glide.with(mContext)
+                        .load(picUrl.get(0).getUrl())
+                        .into(mImageView);
+            } else {
+                mImageView.setVisibility(View.GONE);
+            }
 
         } else {
-            mImageView.setVisibility(View.GONE);
+            Toast.makeText(HistoryDetailActivity.this, "网上没有数据，看不了了！", Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
         android:name=".MyToolApplication"
@@ -34,7 +35,13 @@
         <activity android:name=".activity.StartActivity" />
         <activity android:name=".activity.HistoryActivity" />
         <activity android:name=".activity.HistoryDetailActivity" />
-        <activity android:name=".activity.H5MovieActivity"></activity>
+        <activity android:name=".activity.H5MovieActivity" />
+
+        <service
+            android:name=".service.TestService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service android:name=".service.MyIntentService"></service>
     </application>
 
 </manifest>

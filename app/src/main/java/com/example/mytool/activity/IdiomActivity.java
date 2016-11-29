@@ -1,7 +1,6 @@
 package com.example.mytool.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,8 +13,6 @@ import com.example.mytool.uitil.API;
 import com.example.mytool.uitil.StackManager;
 import com.example.mytool.uitil.Util;
 import com.example.mytool.volley.CommentVolley;
-
-import org.w3c.dom.Text;
 
 public class IdiomActivity extends BaseActivity {
 

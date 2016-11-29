@@ -7,17 +7,14 @@ import android.os.Message;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mytool.R;
 import com.example.mytool.adapter.HomeAdapter;
-import com.example.mytool.bean.weather.LifeWeatherInfo;
 import com.example.mytool.bean.weather.Weather;
 import com.example.mytool.bean.weather.WeatherArray;
-import com.example.mytool.bean.weather.WeatherArrayResult;
 import com.example.mytool.bean.weather.WeatherCommentData;
 import com.example.mytool.bean.weather.WeatherData;
 import com.example.mytool.bean.weather.WeatherDayInfo;

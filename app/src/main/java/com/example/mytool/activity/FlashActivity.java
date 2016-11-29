@@ -3,7 +3,6 @@ package com.example.mytool.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -12,6 +11,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mytool.R;
 import com.example.mytool.db.DatabaseUtil;
+import com.example.mytool.service.MyIntentService;
+import com.example.mytool.service.TestService;
 import com.example.mytool.uitil.API;
 import com.example.mytool.uitil.Util;
 
@@ -32,6 +33,9 @@ public class FlashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash);
+
+        Intent intent = new Intent(FlashActivity.this, TestService.class);
+        startService(intent);
 
         Util.setFullScreen(this);
         task = new TimerTask() {

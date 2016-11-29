@@ -2,7 +2,6 @@ package com.example.mytool.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.mytool.R;
 import com.example.mytool.uitil.StackManager;

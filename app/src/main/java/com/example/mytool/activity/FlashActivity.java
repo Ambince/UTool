@@ -67,12 +67,17 @@ public class FlashActivity extends BaseActivity {
 
 
         if (Util.isNetWorkAvailable(this)) {//有网络
-            city = Util.getCNBylocation(this);
+            try{
+                city = Util.getCNBylocation(this);
+
+            }catch (Exception e){
+                city = Util.HanZi4UrlUnicode("成都");
+
+            }
             if (!TextUtils.isEmpty(city)) {
                 getWeatherData();
 
             } else {
-                city = Util.HanZi4UrlUnicode("成都");
             }
         } else {//无网络
             timer = new Timer();

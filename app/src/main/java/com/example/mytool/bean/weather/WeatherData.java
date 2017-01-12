@@ -15,7 +15,7 @@ public class WeatherData implements Parcelable {
     private String pubdate;
     private String pubtime;
     private WeatherRealtime realtime;
-    private String[] life;
+    private String[] life;//出现类
     private List<WeatherList> weather;
     private WeatherF3h f3h;
     private WhetherPM pm25;

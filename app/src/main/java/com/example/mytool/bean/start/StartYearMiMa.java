@@ -13,6 +13,23 @@ public class StartYearMiMa implements Parcelable {
     private String info;
     private String[] text;
 
+    protected StartYearMiMa(Parcel in) {
+        info = in.readString();
+        text = in.createStringArray();
+    }
+
+    public static final Creator<StartYearMiMa> CREATOR = new Creator<StartYearMiMa>() {
+        @Override
+        public StartYearMiMa createFromParcel(Parcel in) {
+            return new StartYearMiMa(in);
+        }
+
+        @Override
+        public StartYearMiMa[] newArray(int size) {
+            return new StartYearMiMa[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -20,7 +37,8 @@ public class StartYearMiMa implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(info);
+        dest.writeStringArray(text);
     }
 
     public String getInfo() {

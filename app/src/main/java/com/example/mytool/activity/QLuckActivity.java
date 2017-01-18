@@ -1,8 +1,10 @@
 package com.example.mytool.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +35,7 @@ public class QLuckActivity extends BaseActivity {
     private String mTitleString;
 
     private Handler mHandler = new Handler() {
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
     private TextView mTextStartQFriend;
     private TextView mTextStartSummary;
     private TextView mTextStartWork;
+    private LinearLayout mLinearLayout;
 
 
     List<String> dataset = new LinkedList<>(Arrays.asList("白羊座", "金牛座", "双子座", "巨蟹座", "狮子座",
@@ -72,6 +74,7 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
         mButNextWeek = (Button) findViewById(R.id.next_week_but);
         mButMonth = (Button) findViewById(R.id.month_but);
         mButYear = (Button) findViewById(R.id.year_but);
+        mLinearLayout = (LinearLayout) findViewById(R.id.history_content);
 
         mTextStartName = (TextView) findViewById(R.id.start_name);
         mTextStartDateTime = (TextView) findViewById(R.id.start_datetime);
@@ -94,6 +97,13 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
         mButNextWeek.setOnClickListener(this);
         mButYear.setOnClickListener(this);
         mButMonth.setOnClickListener(this);
+
+        mNiceSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLinearLayout.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -101,6 +111,7 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
         switch (v.getId()) {
             case R.id.today_but:
+                mLinearLayout.setVisibility(View.VISIBLE);
                 mEditString = mNiceSpinner.getText().toString().trim();
                 if (Util.isNetWorkAvailable(this)) {
                     getDayFromNet("today");
@@ -110,6 +121,8 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
                 break;
             case R.id.tomorrow_but:
+                mLinearLayout.setVisibility(View.VISIBLE);
+
                 mEditString = mNiceSpinner.getText().toString().trim();
                 if (Util.isNetWorkAvailable(this)) {
                     getDayFromNet("tomorrow");
@@ -119,6 +132,8 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
                 break;
             case R.id.week_but:
+                mLinearLayout.setVisibility(View.VISIBLE);
+
                 mEditString = mNiceSpinner.getText().toString().trim();
                 if (Util.isNetWorkAvailable(this)) {
                     getWeekFromNet("week");
@@ -128,6 +143,8 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
                 break;
             case R.id.next_week_but:
+                mLinearLayout.setVisibility(View.VISIBLE);
+
                 mEditString = mNiceSpinner.getText().toString().trim();
                 if (Util.isNetWorkAvailable(this)) {
                     getWeekFromNet("nextweek");
@@ -137,6 +154,8 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
                 break;
             case R.id.month_but:
+                mLinearLayout.setVisibility(View.VISIBLE);
+
                 mEditString = mNiceSpinner.getText().toString().trim();
                 if (Util.isNetWorkAvailable(this)) {
                     getMonthFromNet("month");
@@ -146,6 +165,8 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
                 break;
             case R.id.year_but:
+                mLinearLayout.setVisibility(View.VISIBLE);
+
                 mEditString = mNiceSpinner.getText().toString().trim();
                 if (Util.isNetWorkAvailable(this)) {
                     getYearFromNet("year");
@@ -171,7 +192,13 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
                 mTextStartHealth.setText("健康指数:    " + startYearLuck.getHealth()[0] + "\n");
                 mTextStartLove.setText("爱情指数:    " + startYearLuck.getLove()[0] + "\n");
                 mTextStartMoney.setText("财运指数:    " + startYearLuck.getFinance()[0] + "\n");
-                mTextStartNumber.setText("幸运石：    " + startYearLuck.getLuckyStone() + "\n");
+                if (startYearLuck.getLuckyStone() != null) {
+                    mTextStartNumber.setText("幸运石：    " + startYearLuck.getLuckyStone() + "\n");
+
+                } else {
+                    mTextStartNumber.setText("幸运石：    " + "\n");
+
+                }
                 mTextStartQFriend.setText("信息：    " + startYearLuck.getMima().getInfo() + "\n");
                 mTextStartSummary.setText("总结：    " + startYearLuck.getMima().getText()[0] + "\n");
             }

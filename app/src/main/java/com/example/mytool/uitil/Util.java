@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -366,8 +367,29 @@ public class Util {
      */
     public static String getCurrentTime() {
         SimpleDateFormat df = new SimpleDateFormat("MM/dd");//设置日期格式
-        return df.format(new Date());
+        String date = df.format(new Date());
+
+        return date.substring(0,1) .equals("0") ? date.substring(1, date.length()) : date;
     }
+
+    /**
+     * 获取当前的月份
+     *
+     * @return
+     */
+    public static String getCurrentMonth() {
+        return getCurrentTime().split("/")[0];
+    }
+
+    /**
+     * * 获取当前的日
+     *
+     * @return
+     */
+    public static String getCurrentDay() {
+        return getCurrentTime().split("/")[1];
+    }
+
 
     public static <T> T parseGson(String jsonStr, T t) {
         Gson gson = new Gson();
@@ -385,6 +407,26 @@ public class Util {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return (int) (px / displayMetrics.density + 0.5f);
 
+    }
+
+    /**
+     * 获取当前的版本号
+     *
+     * @param context
+     * @return
+     */
+    public static String getCurrentVersion(Context context) {
+        int version;
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            version = info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            return "1.0";
+        }
+
+
+        return version + "";
     }
 
 }
